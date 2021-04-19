@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!--Font Awsome CDN-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <h1>HEY</h1>
+    <h2>welcome to the site</h2>
+    <h3>the messaging site</h3>
+    <h4>make an account, login, post a message</h4>
+    <hr />
+    <a href="/createUser">Create an account</a> | <a href="/login">Login</a> |
+    <a href="/message">post a message</a> |
+    <hr />
+
+    <h2>Messages</h2>
+
+    <% for (let message of locals.messages) { %>
+    <div><%= message.dataValues.content %></div>
+    <!-- Add like buttons on message -->
+    <span class="">
+      <span class=""
+        ><button class="like" onclick="displayCountLike()">
+          <i class="far fa-thumbs-up"></i></button
+      ></span>
+      <span id="statscountlike" class="statscountlike" name="statscountlike"
+        >0</span
+      >
+    </span>
+
+    <span class="">
+      <span class=""
+        ><button class="dislike" onclick="displayCountDislike()">
+          <i class="far fa-thumbs-down"></i></button
+      ></span>
+      <span
+        id="statscountdislike"
+        class="statscountdislike"
+        name="statscountdislike"
+        >0</span
+      >
+    </span>
+
+    <% } %>
+
+    <script type="text/javascript">
+      /*
+      var count = (function () {
+        var counter = 0;
+        return function () {
+          return (counter += 1);
+        };
+      })();
+*/
+
+      //create a counter function for like btn
+      var countLike = (function () {
+        var counter = 0;
+        return function () {
+          return (counter += 1);
+        };
+      })();
+      //create a counter function for dislike btn
+      var countDislike = (function () {
+        var counter = 0;
+        return function () {
+          return (counter += 1);
+        };
+      })();
+
+      //Display number of likes on message
+      //Loop through as each message is created in a new div element
+      //each message needs to show their own like/dislike button
+      function displayCountLike() {
+        var x = document.querySelectorAll(".statscountlike");
+        for (var i = 0; i < x.length; i++) {
+          x[i].innerHTML = countLike();
+        }
+      }
+
+      function displayCountDislike() {
+        var x = document.getElementsByClassName("statscountdislike");
+        for (var i = 0; i < x.length; i++) {
+          x[i].innerHTML = countDislike();
+        }
+      }
+
+      /*
+      const btn = querySelector(".like");
+      btn.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var x = (document.querySelectorAll(
+            "statscountlove"
+          ).innerHTML = countLike());
+        });
+      });
+
+      */
+      /*
+       function displayCountLike() {
+         document.getElementById("statscountlike").innerHTML = countLike();
+       }
+
+       function displayCountDislike() {
+         document.getElementById("statscountdislike").innerHTML = countDislike();
+       }
+
+       function displayCountLove() {
+         document.getElementById("statscountlove").innerHTML = countLove();
+       }
+
+
+
+      function displayCount() {
+         var x = document.getElementsByClassName("statscountlike");
+         for (var i = 0; i < x.length; i++) {
+           x[i].innerHTML = count();
+         }
+       }
+       */
+    </script>
+  </body>
+</html>
